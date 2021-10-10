@@ -11,20 +11,21 @@
 <script>
 mwidth = 100;
 mheight = 100;
+const video  = document.querySelector("#camera");
+const constrainsts = setCamera(video);
 window.onload = () => {
   
   setResult();
-  const video  = document.querySelector("#camera");
-  setCamera();
+  constraints = setCamera(video);
 };
 
 //画面回転検出
 window.addEventListener("orientationchange", ()=>{
   setResult();
-  setCamera();
+  constrainsts = setCamera(video);
 });
 
-function setCamera(){
+function setCamera(video){
   /** カメラ設定 */
   const constraints = {
     audio: false,
@@ -49,6 +50,7 @@ function setCamera(){
   .catch( (err) => {
     console.log(err.name + ": " + err.message);
   });
+  return constraints;
 }
 
 function setResult(){
