@@ -73,13 +73,13 @@ function setResult(){
   }
   // 縦向き
   if( angle.isPortrait ) {
-    mwidth = window.screen.height;
-    mheight = window.screen.width;
+    mwidth = window.innerHeight;
+    mheight = window.innerWidth;
   }
   // 横向き
   else{
-    mwidth = window.screen.height;
-    mheight = window.screen.width;
+    mwidth = window.innerHeight;
+    mheight = window.innerWidth;
   }
 }
 /**
