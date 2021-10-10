@@ -1,7 +1,7 @@
 <html>
 <head>
   <meta charset = "UTF-8">
-  <meta name="viewport" content="width=device-width user-scalable=no"　>
+  <meta name="viewport" content="width=device-width user-scalable=no maximum-scale=1.0 minimum-scale=1.0 initial-scale=1.0"　>
   <title>Uni Camera</title>
 </head>
 
@@ -19,7 +19,7 @@ window.onload = () => {
   
   setResult();
   constraints = setCamera(video);
-  showparam();
+  //showparam();
 };
 
 //画面回転検出
@@ -27,7 +27,7 @@ window.onload = () => {
 window.addEventListener("orientationchange", ()=>{
   setResult();
   constrainsts = setCamera(video);
-  showparam();
+  //showparam();
 });
 
 function showparam(){
