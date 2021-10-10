@@ -13,6 +13,8 @@ window.addEventListener("orientationchange", ()=>{
   setResult();
 });
 window.onload = () => {
+  mwidth = 100;
+  mheight = 100;
   setResult();
   const video  = document.querySelector("#camera");
   /** カメラ設定 */
@@ -48,13 +50,13 @@ function setResult(){
   }
   // 縦向き
   if( angle.isPortrait ) {
-    mwidth = window.screen.width
-    mheight = window.screen.height
+    mwidth = window.screen.width;
+    mheight = window.screen.height;
   }
   // 横向き
   else{
-    mwidth = window.screen.height
-    mheight = window.screen.width
+    mwidth = window.screen.height;
+    mheight = window.screen.width;
   }
 }
 /**
