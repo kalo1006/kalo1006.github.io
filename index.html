@@ -14,25 +14,27 @@ mwidth = 100;
 mheight = 100;
 const video  = document.querySelector("#camera");
 const show_param = document.querySelector("#param")
-const constrainsts = setCamera(video);
+cameraconst = setCamera(video);
 
 window.onload = () => {
   
   setResult();
   showparam();
-  constrainsts = setCamera(video);
+  cameraconst = setCamera(video);
 };
 
 //画面回転検出
 window.addEventListener("orientationchange", ()=>{
   setResult();
   showparam();
-  constrainsts = setCamera(video);
+  cameraconst = setCamera(video);
 });
 
 function showparam(){
   show_param.innerHTML =  "<ul>"
                       +   `<li>端末の向きは「<strong>${getAngle().isPortrait? "縦向き":"横向き"}</strong>」です</li>`
+                      +   `<li>端末のOSは「<strong>${getos()}</strong>」です</li>`
+                      +   `<li>カメラ設定mwidth*mheight「<strong>${mwidth}x${mheight}</strong>」です</li>`
                       +   `<li>解像度は「<strong>${window.screen.width}x${window.screen.height}</strong>」です</li>`
                       + "</ul>";
 };
@@ -41,8 +43,8 @@ function setCamera(video){
   const constraints = {
     audio: false,
     video: {
-      width: window.screen.width * 0.8,
-      height: window.screen.height * 0.8,
+      width: mwidth * 0.8,
+      height: mheight * 0.8,
       facingMode: "user"   // フロントカメラを利用する
       // facingMode: { exact: "environment" }  // リアカメラを利用する場合
     }
@@ -78,8 +80,13 @@ function setResult(){
   }
   // 横向き
   else{
-    mwidth = window.screen.height;
-    mheight = window.screen.width;
+    if(getos == "ios"){
+      mwidth = window.screen.height;
+      mheight = window.screen.width;
+    }else{
+      mwidth = window.screen.width;
+      mheight = window.screen.height;
+    }
   }
 }
 /**
@@ -101,6 +108,25 @@ function getAngle(){
     isLandscape: ! isPortrait,    // 横向き
   });
 };
+
+//OSを取得
+function getos(){
+  var ua = window.navigator.userAgent.toLowerCase();
+  os_name = "";
+  if(ua.indexOf("windows nt") !== -1) {
+    on_name = "win";
+  } else if(ua.indexOf("android") !== -1) {
+    os_name = "Android";
+  } else if(ua.indexOf("iphone") !== -1 || ua.indexOf("ipad") !== -1) {
+    os_name = "ios";
+  } else if(ua.indexOf("mac os x") !== -1) {
+    os_name = "macOS";
+  } else {
+    os_name = "";
+  }
+  return os_name;
+};
+
 </script>
   
 </body>
