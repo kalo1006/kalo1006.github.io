@@ -6,25 +6,34 @@
 </head>
 
 <body>
-  <video id="camera" style="text-align: center"></video>
+  <div id="param"></div>
+  <video id="camera" autoplay playsinline></video>
   
 <script>
 mwidth = 100;
 mheight = 100;
 const video  = document.querySelector("#camera");
+const show_param = document.querySelector("#param")
 const constrainsts = setCamera(video);
 window.onload = () => {
   
   setResult();
   constraints = setCamera(video);
+  showparam();
 };
 
 //画面回転検出
 window.addEventListener("orientationchange", ()=>{
   setResult();
   constrainsts = setCamera(video);
+  showparam();
 });
-
+function showparam(){
+  show_param.innerHTML =  "<ul>"
+                      +   `<li>端末のmwidthは「<strong>${mwidth}</strong>」です</li>`
+                      +   `<li>解像度は「<strong>${window.screen.width}x${window.screen.height}</strong>」です</li>`
+                      + "</ul>";
+};
 function setCamera(video){
   /** カメラ設定 */
   const constraints = {
