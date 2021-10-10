@@ -1,0 +1,84 @@
+<html>
+<head>
+  <meta charset = "UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Uni Camera</title>
+</head>
+
+<body>
+  <video id="camera"></video>
+  
+<script>
+window.addEventListener("orientationchange", ()=>{
+  setResult();
+});
+window.onload = () => {
+  const video  = document.querySelector("#camera");
+  /** カメラ設定 */
+  const constraints = {
+    audio: false,
+    video: {
+      width: mwidth,
+      height: mheight,
+      facingMode: "user"   // フロントカメラを利用する
+      // facingMode: { exact: "environment" }  // リアカメラを利用する場合
+    }
+  };
+
+  /**
+   * カメラを<video>と同期
+   */
+  navigator.mediaDevices.getUserMedia(constraints)
+  .then( (stream) => {
+    video.srcObject = stream;
+    video.onloadedmetadata = (e) => {
+      video.play();
+    };
+  })
+  .catch( (err) => {
+    console.log(err.name + ": " + err.message);
+  });
+  
+function setResult(){
+  // 角度を取得
+  const angle = getAngle();
+  if( angle.value === undefined ){
+    return(false);
+  }
+  // 縦向き
+  if( angle.isPortrait ) {
+    mwidth = window.screen.width
+    mheight = window.screen.height
+  }
+  // 横向き
+  else{
+    mwidth = window.screen.height
+    mheight = window.screen.width
+  }
+}
+/**
+ * 端末の方向を返却する
+ *
+ * @return {object}
+ */
+function getAngle(){
+  // 角度を取得
+  let angle = screen && screen.orientation && screen.orientation.angle;
+  if ( angle === undefined ) {
+    angle = window.orientation;    // iOS用
+  }
+
+  const isPortrait = (angle === 0);
+  return({
+          value: angle,           // 具体的な角度
+     isPortrait: isPortrait,      // 縦向き
+    isLandscape: ! isPortrait,    // 横向き
+  });
+}
+};
+</script>
+  
+</body>
+  
+</html>  
+  
