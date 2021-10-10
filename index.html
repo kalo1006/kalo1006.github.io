@@ -15,19 +15,19 @@ mheight = 100;
 const video  = document.querySelector("#camera");
 const show_param = document.querySelector("#param")
 const constrainsts = setCamera(video);
+
 window.onload = () => {
   
   setResult();
-  constraints = setCamera(video);
-  //showparam();
+  showparam();
+  constrainsts = setCamera(video);
 };
 
 //画面回転検出
-
 window.addEventListener("orientationchange", ()=>{
   setResult();
+  showparam();
   constrainsts = setCamera(video);
-  //showparam();
 });
 
 function showparam(){
@@ -41,8 +41,8 @@ function setCamera(video){
   const constraints = {
     audio: false,
     video: {
-      width: mwidth * 0.8,
-      height: mheight * 0.8,
+      width: window.screen.width * 0.8,
+      height: window.screen.height * 0.8,
       facingMode: "user"   // フロントカメラを利用する
       // facingMode: { exact: "environment" }  // リアカメラを利用する場合
     }
@@ -73,13 +73,13 @@ function setResult(){
   }
   // 縦向き
   if( angle.isPortrait ) {
-    mwidth = window.innerHeight;
-    mheight = window.innerWidth;
+    mwidth = window.screen.height;
+    mheight = window.screen.width;
   }
   // 横向き
   else{
-    mwidth = window.innerHeight;
-    mheight = window.innerWidth;
+    mwidth = window.screen.height;
+    mheight = window.screen.width;
   }
 }
 /**
