@@ -29,13 +29,13 @@ window.addEventListener("orientationchange", ()=>{
   constrainsts = setCamera(video);
   showparam();
 });
+*/
 function showparam(){
   show_param.innerHTML =  "<ul>"
                       +   `<li>端末のmwidthは「<strong>${mwidth}</strong>」です</li>`
                       +   `<li>解像度は「<strong>${window.screen.width}x${window.screen.height}</strong>」です</li>`
                       + "</ul>";
 };
-*/
 function setCamera(video){
   /** カメラ設定 */
   const constraints = {
@@ -73,8 +73,8 @@ function setResult(){
   }
   // 縦向き
   if( angle.isPortrait ) {
-    mwidth = window.screen.width;
-    mheight = window.screen.height;
+    mwidth = window.screen.height;
+    mheight = window.screen.width;
   }
   // 横向き
   else{
