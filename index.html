@@ -7,7 +7,7 @@
 
 <body>
   <div id="param"></div>
-  <video id="camera" autoplay playsinline></video>
+  <video id="camera" width=1000 height=1000 autoplay playsinline></video>
   
 <script>
 mwidth = 100;
@@ -39,8 +39,8 @@ function setCamera(video){
   const constraints = {
     audio: false,
     video: {
-      width: mwidth * 0.9,
-      height: mheight * 0.9,
+      width: mwidth * 0.8,
+      height: mheight * 0.8,
       facingMode: "user"   // フロントカメラを利用する
       // facingMode: { exact: "environment" }  // リアカメラを利用する場合
     }
