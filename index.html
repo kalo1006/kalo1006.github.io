@@ -14,20 +14,19 @@ mwidth = 100;
 mheight = 100;
 const video  = document.querySelector("#camera");
 const show_param = document.querySelector("#param")
-cameraconst = setCamera(video);
 
 window.onload = () => {
   
   setResult();
   showparam();
-  cameraconst = setCamera(video);
+  setCamera(video);
 };
 
 //画面回転検出
 window.addEventListener("orientationchange", ()=>{
   setResult();
   showparam();
-  cameraconst = setCamera(video);
+  setCamera(video);
 });
 
 function showparam(){
@@ -63,7 +62,6 @@ function setCamera(video){
   .catch( (err) => {
     console.log(err.name + ": " + err.message);
   });
-  return constraints;
 }
 
 function setResult(){
@@ -81,8 +79,8 @@ function setResult(){
   // 横向き
   else{
     if(getos == "ios"){
-      mwidth = window.screen.height;
-      mheight = window.screen.width;
+      mwidth = window.screen.width;
+      mheight = window.screen.height;
     }else{
       mwidth = window.screen.width;
       mheight = window.screen.height;
