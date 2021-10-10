@@ -1,7 +1,7 @@
 <html>
 <head>
   <meta charset = "UTF-8">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width maximum-scale=1.0"　>
   <title>Uni Camera</title>
 </head>
 
@@ -32,7 +32,7 @@ window.addEventListener("orientationchange", ()=>{
 
 function showparam(){
   show_param.innerHTML =  "<ul>"
-                      +   `<li>端末のmwidthは「<strong>${mwidth}</strong>」です</li>`
+                      +   `<li>端末の向きは「<strong>${getAngle()}</strong>」です</li>`
                       +   `<li>解像度は「<strong>${window.screen.width}x${window.screen.height}</strong>」です</li>`
                       + "</ul>";
 };
