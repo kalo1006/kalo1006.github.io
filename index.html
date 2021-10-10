@@ -23,13 +23,13 @@ window.onload = () => {
 };
 
 //画面回転検出
-/**
+
 window.addEventListener("orientationchange", ()=>{
   setResult();
   constrainsts = setCamera(video);
   showparam();
 });
-*/
+
 function showparam(){
   show_param.innerHTML =  "<ul>"
                       +   `<li>端末のmwidthは「<strong>${mwidth}</strong>」です</li>`
