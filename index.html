@@ -115,10 +115,12 @@ function getos(){
     on_name = "win";
   } else if(ua.indexOf("android") !== -1) {
     os_name = "Android";
+  } else if(ua.indexOf("iphone") !== -1) {
+    os_name = "ios";
+  } else if((ua.indexOf("mac os x") !== -1 || ua.indexOf("ipad") !== -1) && 'ontouchend' in document){
+    os_name = "ios";
   } else if(ua.indexOf("mac os x") !== -1) {
     os_name = "macOS";
-  } else if(ua.indexOf("iphone") !== -1 || ua.indexOf("ipad") !== -1) {
-    os_name = "ios";
   } else {
     os_name = "";
   }
